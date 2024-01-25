@@ -13,6 +13,7 @@ class Product(models.Model):
     price = models.CharField(max_length=40,null=True, blank=True)
     quantity = models.IntegerField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    
 
     def __str__(self) -> str:
         return self.name
@@ -20,12 +21,10 @@ class Product(models.Model):
 
 class Customer(models.Model):
     name = models.CharField(max_length=255)
+    product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
+
 
 
     def __str__(self) -> str:
         return self.name
 
-
-class PurchasedProduct(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    product_name = models.ForeignKey(Product,on_delete=models.CASCADE)
